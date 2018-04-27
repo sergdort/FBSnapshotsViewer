@@ -14,10 +14,8 @@ class BuildCreator {
     var fbReferenceImageDirectoryURLs: [URL]?
     
     func createBuild() -> Build? {
-        guard let date = date, let applicationName = applicationName, let fbReferenceImageDirectoryURLs = fbReferenceImageDirectoryURLs else {
-            print("Can not create a build if not all require properties are initialized:\ndate: \(String(describing: self.date))\napplicationName: \(String(describing: self.applicationName))\nfbReferenceImageDirectoryURLs: \(String(describing: self.fbReferenceImageDirectoryURLs))")
-            return nil
-        }
-        return Build(date: date, applicationName: applicationName, fbReferenceImageDirectoryURLs: fbReferenceImageDirectoryURLs)
+        return Build(date: date ?? Date(),
+                     applicationName: applicationName ?? "Unknown",
+                     fbReferenceImageDirectoryURLs: fbReferenceImageDirectoryURLs ?? [])
     }
 }

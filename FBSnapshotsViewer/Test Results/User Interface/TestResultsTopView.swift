@@ -10,6 +10,7 @@ import AppKit
 
 protocol TestResultsTopViewDelegate: class {
     func testResultsTopView(_ topView: TestResultsTopView, didSelect diffMode: TestResultsDiffMode)
+    func testResultsTopViewDidPressClear(_ topView: TestResultsTopView)
 }
 
 class TestResultsTopView: NSView {
@@ -17,6 +18,7 @@ class TestResultsTopView: NSView {
     
     @IBOutlet private weak var numberOfTestsLabel: NSTextField!
     @IBOutlet private weak var testResultsDiffModeSegementedControl: NSSegmentedControl!
+    @IBOutlet private weak var clearButton: NSButton!
     
     override func draw(_ dirtyRect: NSRect) {
         let gradient = NSGradient(starting: Color(named: .testResultsTopViewColorBottom), ending: Color(named: .testResultsTopViewColorTop))
@@ -27,6 +29,8 @@ class TestResultsTopView: NSView {
         super.awakeFromNib()
         testResultsDiffModeSegementedControl.target = self
         testResultsDiffModeSegementedControl.action = #selector(testResultsDiffModeSegementedControlValueChanged(sender:))
+        clearButton.target = self
+        clearButton.action = #selector(clearButtonPressed)
     }
     
     // MARK: - Helpers
@@ -50,5 +54,10 @@ class TestResultsTopView: NSView {
     
     @objc func testResultsDiffModeSegementedControlValueChanged(sender: NSSegmentedControl) {
         delegate?.testResultsTopView(self, didSelect: convertToDiffMode(testResultsDiffModeSegement: sender.selectedSegment))
+    }
+    
+    @objc
+    private func clearButtonPressed() {
+        delegate?.testResultsTopViewDidPressClear(self)
     }
 }

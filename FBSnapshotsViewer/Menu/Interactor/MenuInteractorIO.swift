@@ -22,6 +22,8 @@ protocol MenuInteractorInput: class, AutoMockable {
     ///
     /// - Parameter path: build's log file absolute path
     func startSnapshotTestResultListening(fromLogFileAt path: String)
+    
+    func clrearTestResults()
 }
 
 protocol MenuInteractorOutput: class, AutoMockable {

@@ -113,4 +113,8 @@ extension TestResultsController: TestResultsTopViewDelegate {
     func testResultsTopView(_ topView: TestResultsTopView, didSelect diffMode: TestResultsDiffMode) {
         eventHandler.selectDiffMode(diffMode)
     }
+    
+    func testResultsTopViewDidPressClear(_ topView: TestResultsTopView) {
+        eventHandler.clearResults()
+    }
 }

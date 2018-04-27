@@ -160,6 +160,14 @@ class MenuInteractorInputMock: MenuInteractorInput {
         startSnapshotTestResultListening_fromLogFileAt_Called = true
         startSnapshotTestResultListening_fromLogFileAt_ReceivedPath = path
     }
+    //MARK: - clrearTestResults
+
+    var clrearTestResults_Called = false
+
+    func clrearTestResults() {
+
+        clrearTestResults_Called = true
+    }
 }
 class MenuInteractorOutputMock: MenuInteractorOutput {
 
@@ -517,6 +525,14 @@ class TestResultsInteractorInputMock: TestResultsInteractorInput {
         copy_testResult_Called = true
         copy_testResult_ReceivedTestResult = testResult
     }
+    //MARK: - clearResults
+
+    var clearResults_Called = false
+
+    func clearResults() {
+
+        clearResults_Called = true
+    }
 }
 class TestResultsInteractorOutputMock: TestResultsInteractorOutput {
 
@@ -592,6 +608,14 @@ class TestResultsModuleInterfaceMock: TestResultsModuleInterface {
 
         copy_testResultDisplayInfo_Called = true
         copy_testResultDisplayInfo_ReceivedTestResultDisplayInfo = testResultDisplayInfo
+    }
+    //MARK: - clearResults
+
+    var clearResults_Called = false
+
+    func clearResults() {
+
+        clearResults_Called = true
     }
 }
 class TestResultsUserInterfaceMock: TestResultsUserInterface {

@@ -15,4 +15,5 @@ protocol TestResultsModuleInterface: class, AutoMockable {
     func selectDiffMode(_ diffMode: TestResultsDiffMode)
     func accept(_ testResults: [TestResultDisplayInfo])
     func copy(testResultDisplayInfo: TestResultDisplayInfo)
+    func clearResults()
 }

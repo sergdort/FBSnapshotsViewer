@@ -10,9 +10,15 @@ import Cocoa
 
 final class TestResultsWireframe {
 
-    func show(relativeTo rect: NSRect, of view: NSView, with testResults: [SnapshotTestResult]) {
+    func show(relativeTo rect: NSRect,
+              of view: NSView,
+              with testResults: [SnapshotTestResult],
+              menuInteractor: MenuInteractorInput) {
         let userInterface = StoryboardScene.Main.instantiateTestResultsController()
-        let interactor = TestResultsInteractor(builder: TestResultsInteractorBuilder(clojure: { $0.testResults = testResults }))
+        let interactor = TestResultsInteractor(builder: TestResultsInteractorBuilder(clojure: { 
+            $0.testResults = testResults
+            $0.menuInteractor = menuInteractor
+        }))
         let presenter = TestResultsPresenter()
         let popover = NSPopover()
         popover.behavior = .transient

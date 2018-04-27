@@ -31,12 +31,15 @@ extension MenuPresenter: MenuModuleInterface {
     }
 
     func showTestResults() {
-        guard let testResults = interactor?.foundTestResults, !testResults.isEmpty else {
+        guard let testResults = interactor?.foundTestResults,
+            let interactor = interactor,
+            !testResults.isEmpty else {
             return
         }
 
         userInterface?.setNewTestResults(available: false)
-        wireframe?.showTestResultsModule(with: testResults)
+        wireframe?.showTestResultsModule(with: testResults,
+                                         menuInteractorInput: interactor)
     }
 
     func showApplicationMenu() {

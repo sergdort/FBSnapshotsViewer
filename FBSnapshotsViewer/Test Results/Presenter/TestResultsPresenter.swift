@@ -52,6 +52,11 @@ extension TestResultsPresenter: TestResultsModuleInterface {
     func copy(testResultDisplayInfo: TestResultDisplayInfo) {
         interactor?.copy(testResult: testResultDisplayInfo.testResult)
     }
+    
+    func clearResults() {
+        interactor?.clearResults()
+        userInterface?.show(displayInfo: TestResultsDisplayInfo())
+    }
 }
 
 extension TestResultsPresenter: TestResultsInteractorOutput {

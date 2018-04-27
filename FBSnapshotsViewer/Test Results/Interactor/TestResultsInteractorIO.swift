@@ -14,6 +14,7 @@ protocol TestResultsInteractorInput: class, AutoMockable {
     func openInXcode(testResult: SnapshotTestResult)
     func accept(testResult: SnapshotTestResult)
     func copy(testResult: SnapshotTestResult)
+    func clearResults()
 }
 
 protocol TestResultsInteractorOutput: class, AutoMockable {

@@ -68,4 +68,8 @@ extension MenuInteractor: MenuInteractorInput {
             self?.output?.didFindNewTestLogFile(at: path)
         }
     }
+    
+    func clrearTestResults() {
+        currentlyFoundTestResults = []
+    }
 }

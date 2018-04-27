@@ -32,12 +32,15 @@ class MenuWireframe {
         return menuController
     }
 
-    func showTestResultsModule(with testResults: [SnapshotTestResult]) {
+    func showTestResultsModule(with testResults: [SnapshotTestResult], menuInteractorInput: MenuInteractorInput) {
         guard let presentationView = userInterface?.statusItem.button else {
             return
         }
         let wireframe = TestResultsWireframe()
-        wireframe.show(relativeTo: presentationView.bounds, of: presentationView, with: testResults)
+        wireframe.show(relativeTo: presentationView.bounds,
+                       of: presentationView,
+                       with: testResults,
+                       menuInteractor: menuInteractorInput)
     }
 
     func showPreferencesModule(with configurationStorage: ConfigurationStorage = UserDefaultsConfigurationStorage()) {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13122.17"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
@@ -743,6 +743,9 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="208" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+                        <connections>
+                            <outlet property="delegate" destination="2V7-mm-B8Q" id="FGq-mb-8Tf"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="DIx-ct-IA2" kind="relationship" relationship="window.shadowedContentViewController" id="Ghj-hF-nEJ"/>
@@ -768,7 +771,7 @@
                                     <subviews>
                                         <collectionView id="oJD-1b-tXN">
                                             <rect key="frame" x="0.0" y="0.0" width="550" height="406"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="5hR-Ye-zue">
                                                 <size key="itemSize" width="50" height="50"/>
                                             </collectionViewFlowLayout>
@@ -808,16 +811,27 @@
                                             </segments>
                                         </segmentedCell>
                                     </segmentedControl>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1vj-dj-hXe">
+                                        <rect key="frame" x="377" y="5" width="72" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uC5-I2-AJQ">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="2hI-Qn-ZeL" firstAttribute="centerY" secondItem="yWN-mK-KOE" secondAttribute="centerY" id="I2g-ZW-bQY"/>
+                                    <constraint firstItem="1vj-dj-hXe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yWN-mK-KOE" secondAttribute="leading" constant="20" symbolic="YES" id="LCT-O0-r6H"/>
+                                    <constraint firstItem="1vj-dj-hXe" firstAttribute="centerY" secondItem="2hI-Qn-ZeL" secondAttribute="centerY" id="MTz-ld-ay3"/>
                                     <constraint firstItem="2hI-Qn-ZeL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4Rv-5m-eGV" secondAttribute="trailing" constant="32" id="MtC-xf-udu"/>
                                     <constraint firstItem="4Rv-5m-eGV" firstAttribute="centerY" secondItem="yWN-mK-KOE" secondAttribute="centerY" id="Y0E-KF-T32"/>
                                     <constraint firstAttribute="trailing" secondItem="2hI-Qn-ZeL" secondAttribute="trailing" constant="8" id="b8O-Wp-S3G"/>
                                     <constraint firstItem="4Rv-5m-eGV" firstAttribute="leading" secondItem="yWN-mK-KOE" secondAttribute="leading" constant="8" id="ouu-Jt-J64"/>
+                                    <constraint firstItem="2hI-Qn-ZeL" firstAttribute="leading" secondItem="1vj-dj-hXe" secondAttribute="trailing" constant="8" id="sGN-6V-S1m"/>
                                     <constraint firstAttribute="height" constant="44" id="wMk-jQ-8gP"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="clearButton" destination="1vj-dj-hXe" id="hlB-uD-DLH"/>
                                     <outlet property="numberOfTestsLabel" destination="4Rv-5m-eGV" id="K1N-VK-gj2"/>
                                     <outlet property="testResultsDiffModeSegementedControl" destination="2hI-Qn-ZeL" id="ESu-XE-khC"/>
                                 </connections>

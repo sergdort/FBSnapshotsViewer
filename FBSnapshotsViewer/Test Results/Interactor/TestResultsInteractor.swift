@@ -19,6 +19,7 @@ class TestResultsInteractorBuilder {
     var acceptor: SnapshotTestResultAcceptor = SnapshotTestResultAcceptor()
     var pasteboard: Pasteboard = NSPasteboard.general()
     var testResults: [SnapshotTestResult] = []
+    var menuInteractor: MenuInteractorInput!
     
     typealias BuiderClojure = (TestResultsInteractorBuilder) -> Void
     
@@ -33,6 +34,7 @@ class TestResultsInteractor {
     fileprivate let processLauncher: ProcessLauncher
     fileprivate let acceptor: SnapshotTestResultAcceptor
     fileprivate let pasteboard: Pasteboard
+    fileprivate let menuInteractor: MenuInteractorInput
     var testResults: [SnapshotTestResult]
     
     weak var output: TestResultsInteractorOutput?
@@ -44,6 +46,7 @@ class TestResultsInteractor {
         self.processLauncher = builder.processLauncher
         self.acceptor = builder.acceptor
         self.pasteboard = builder.pasteboard
+        self.menuInteractor = builder.menuInteractor
     }
 }
 
@@ -97,5 +100,10 @@ extension TestResultsInteractor: TestResultsInteractorInput {
             url = URL(fileURLWithPath: referenceImagePath)
         }
         pasteboard.copyImage(at: url)
+    }
+    
+    func clearResults() {
+        testResults = []
+        menuInteractor.clrearTestResults()
     }
 }

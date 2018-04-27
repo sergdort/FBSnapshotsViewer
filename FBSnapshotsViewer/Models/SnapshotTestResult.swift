@@ -59,4 +59,18 @@ enum SnapshotTestResult: AutoEquatable {
                 diffImagePath: String,
                 failedImagePath: String,
                 build: Build)
+    
+    static func hasSamePath(lhs: SnapshotTestResult, rhs: SnapshotTestResult) -> Bool {
+        switch (lhs, rhs) {
+        case let (.recorded(_, lhsReferenceImagePath, _), .recorded(_, rhsReferenceImagePath, _)):
+            return lhsReferenceImagePath == rhsReferenceImagePath
+        case let (.failed(_, lhsReferenceImagePath, lhsdiffImagePath, lhsFailedImagePath, _),
+                  .failed(_, rhsReferenceImagePath, rhsdiffImagePath, rhsFailedImagePath, _)):
+            return lhsReferenceImagePath == rhsReferenceImagePath &&
+                lhsdiffImagePath == rhsdiffImagePath &&
+                lhsFailedImagePath == rhsFailedImagePath
+        default:
+            return false
+        }
+    }
 }

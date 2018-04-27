@@ -49,7 +49,14 @@ extension MenuInteractor: MenuInteractorInput {
         }
         let applicationSnapshotTestResultListener = applicationSnapshotTestResultListenerFactory.applicationSnapshotTestResultListener(forLogFileAt: path, configuration: configuration)
         applicationSnapshotTestResultListener.startListening { [weak self] testResult in
-            self?.currentlyFoundTestResults.insert(testResult, at: 0)
+            guard let strongSelf = self else { return }
+            if let index = strongSelf.currentlyFoundTestResults.index(where: { (oldTestResult) -> Bool in
+                return SnapshotTestResult.hasSamePath(lhs: oldTestResult, rhs: testResult)
+            }) {
+                strongSelf.currentlyFoundTestResults[index] = testResult
+            } else {
+                strongSelf.currentlyFoundTestResults.insert(testResult, at: 0)
+            }
             self?.output?.didFindNewTestResult(testResult)
         }
         applicationSnapshotTestResultListeners[path] = applicationSnapshotTestResultListener

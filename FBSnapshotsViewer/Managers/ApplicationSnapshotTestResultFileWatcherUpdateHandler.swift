@@ -93,7 +93,7 @@ class ApplicationSnapshotTestResultFileWatcherUpdateHandler {
             return []
         case let .updated(data):
             guard let text = String(data: data, encoding: .utf8), !text.isEmpty else {
-                assertionFailure("Invalid data reported by KZFileWatchers.FileWatcher.Local")
+//                assertionFailure("Invalid data reported by KZFileWatchers.FileWatcher.Local")
                 return []
             }
             do {

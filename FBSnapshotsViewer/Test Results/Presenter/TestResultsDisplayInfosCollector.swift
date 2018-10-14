@@ -28,11 +28,13 @@ class TestResultsDisplayInfosCollector {
     }
     
     private func createSectionDisplayInfos(with groupedTestResults: [TestResultsSectionTitleDisplayInfo: [TestResultDisplayInfo]]) -> [TestResultsSectionDisplayInfo] {
-        return groupedTestResults.map { TestResultsSectionDisplayInfo(title: $0.key, items: $0.value) }.sorted {
-            let timeAgo1 = $0.0.titleInfo.timeAgoDate
-            let timeAgo2 = $0.1.titleInfo.timeAgoDate
-            return timeAgo1 != timeAgo2 ? timeAgo1 >= timeAgo2 : $0.0.titleInfo.title > $0.1.titleInfo.title
-        }
+        return groupedTestResults
+            .map { TestResultsSectionDisplayInfo(title: $0.key, items: $0.value) }
+            .sorted { (lhs, rhs) in
+                let timeAgo1 = lhs.titleInfo.timeAgoDate
+                let timeAgo2 = rhs.titleInfo.timeAgoDate
+                return timeAgo1 != timeAgo2 ? timeAgo1 >= timeAgo2 : lhs.titleInfo.title > rhs.titleInfo.title
+            }
     }
     
     // MARK: - Interface

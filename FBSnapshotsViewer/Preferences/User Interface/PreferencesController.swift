@@ -12,13 +12,19 @@ class PreferencesWindowController: NSWindowController {}
 
 class PreferencesController: NSViewController {
     var eventHandler: PreferencesModuleInterface!
-    @IBOutlet weak var derivedDataTypePopUpButton: NSPopUpButton!
-    @IBOutlet weak var derivedDataPathLabel: NSTextField!
-    @IBOutlet weak var derivedDataPathTextField: NSTextField!
+    @IBOutlet var derivedDataTypePopUpButton: NSPopUpButton!
+    @IBOutlet var derivedDataPathLabel: NSTextField!
+    @IBOutlet var derivedDataPathTextField: NSTextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(derivedDataPathTextFieldDidChange(notification:)), name: Notification.Name.NSControlTextDidChange, object: derivedDataPathTextField)
+        NotificationCenter.default
+            .addObserver(
+                self,
+                selector: #selector(derivedDataPathTextFieldDidChange(notification:)),
+                name: NSControl.textDidChangeNotification,
+                object: derivedDataPathTextField
+            )
     }
 
     deinit {
@@ -37,6 +43,7 @@ class PreferencesController: NSViewController {
 }
 
 extension PreferencesController: PreferencesUserInterface {
+
     // MARK: - PreferencesUserInterface
 
     func show(preferencesDisplayInfo: PreferencesDisplayInfo) {
@@ -64,6 +71,7 @@ extension PreferencesController: PreferencesUserInterface {
 }
 
 extension PreferencesController {
+
     // MARK: - Notifications
 
     @objc func derivedDataPathTextFieldDidChange(notification: Notification) {
@@ -72,6 +80,7 @@ extension PreferencesController {
 }
 
 extension PreferencesController {
+
     // MARK: - Actions
 
     @IBAction func popUpValueChanged(_ sender: NSPopUpButton) {

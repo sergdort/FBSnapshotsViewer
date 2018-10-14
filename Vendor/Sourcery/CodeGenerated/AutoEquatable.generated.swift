@@ -1,4 +1,4 @@
-// Generated using Sourcery 0.9.0 — https://github.com/krzysztofzablocki/Sourcery
+// Generated using Sourcery 0.15.0 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
 
 // swiftlint:disable file_length
@@ -152,25 +152,6 @@ internal func == (lhs: FolderEventFilter, rhs: FolderEventFilter) -> Bool {
     case (.compound(let lhs), .compound(let rhs)): 
         if lhs.0 != rhs.0 { return false }
         if lhs.1 != rhs.1 { return false }
-        return true
-    default: return false
-    }
-}
-// MARK: - SnapshotTestResult AutoEquatable
-extension SnapshotTestResult: Equatable {}
-internal func == (lhs: SnapshotTestResult, rhs: SnapshotTestResult) -> Bool {
-    switch (lhs, rhs) {
-    case (.recorded(let lhs), .recorded(let rhs)): 
-        if lhs.testInformation != rhs.testInformation { return false }
-        if lhs.referenceImagePath != rhs.referenceImagePath { return false }
-        if lhs.build != rhs.build { return false }
-        return true
-    case (.failed(let lhs), .failed(let rhs)): 
-        if lhs.testInformation != rhs.testInformation { return false }
-        if lhs.referenceImagePath != rhs.referenceImagePath { return false }
-        if lhs.diffImagePath != rhs.diffImagePath { return false }
-        if lhs.failedImagePath != rhs.failedImagePath { return false }
-        if lhs.build != rhs.build { return false }
         return true
     default: return false
     }

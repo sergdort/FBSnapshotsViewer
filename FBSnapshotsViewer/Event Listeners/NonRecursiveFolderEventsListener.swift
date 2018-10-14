@@ -34,9 +34,6 @@ final class NonRecursiveFolderEventsListener: FolderEventsListener {
     func startListening() {
         try? watcher.start { [weak self] event in
             let folderEvent = FolderEvent(eventFlag: event.flag, at: event.path)
-            if let existedFilter = self?.filter, !existedFilter.apply(to: folderEvent) {
-                return
-            }
             if let strongSelf = self {
                 strongSelf.output?.folderEventsListener(strongSelf, didReceive: folderEvent)
             }

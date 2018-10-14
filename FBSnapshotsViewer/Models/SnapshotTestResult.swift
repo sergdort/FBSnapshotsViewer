@@ -15,7 +15,7 @@ struct SnapshotTestInformation: AutoEquatable {
     let testLineNumber: Int
 }
 
-enum SnapshotTestResult: AutoEquatable {
+enum SnapshotTestResult: Equatable {
     var testClassName: String {
         return testInformation.testClassName
     }
